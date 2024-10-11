@@ -1,5 +1,5 @@
 class Orientation
-  DIRECTIONS = %w(N E S W)
+  DIRECTIONS = %w(north east south west)
 
   def initialize(starting_direction)
     @current_index = DIRECTIONS.index(starting_direction)
