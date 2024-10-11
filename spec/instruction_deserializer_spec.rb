@@ -1,10 +1,10 @@
 describe InstructionDeserializer do
   let(:instructions) { "FFLFRFF" }
   let(:instruction_deserializer) { InstructionDeserializer.new(instructions) }
-  let(:results) { [] }
 
   describe "#each" do
     it "yields each instruction" do
+      results = []
       instruction_deserializer.each do |instruction|
         results << instruction
       end

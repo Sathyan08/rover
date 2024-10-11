@@ -5,8 +5,8 @@ describe Boundry do
   describe "#initialize" do
     context "when the x_range is a range" do
       it "sets the x_range" do
-        boundry = Boundry.new((0..5), 5)
-        expect(boundry.x_range).to eq(0..5)
+        boundry = Boundry.new((2..5), 5)
+        expect(boundry.x_range).to eq(2..5)
       end
     end
 
