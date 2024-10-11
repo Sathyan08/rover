@@ -26,7 +26,7 @@ describe Orientation do
         end
 
         it "returns the correct direction after multiple turns" do
-          orientation.turn_left(3)
+          orientation.turn_left(7)
           expect(orientation.current).to eq('E')
         end
       end
@@ -47,7 +47,7 @@ describe Orientation do
         end
 
         it "returns the correct direction after multiple turns" do
-          orientation.turn_right(3)
+          orientation.turn_right(7)
           expect(orientation.current).to eq('W')
         end
       end
