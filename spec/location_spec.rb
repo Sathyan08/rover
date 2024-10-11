@@ -1,0 +1,28 @@
+describe Location do
+  let(:starting_location) { [0, 0] }
+  let(:location) { Location.new(*starting_location) }
+
+  describe "#current" do
+    context "when the location is initialized" do
+      it "returns the starting location" do
+        expect(location.current).to eq(starting_location)
+      end
+    end
+
+    context "after moves" do
+      it "returns the correct location" do
+        location.move_north
+        expect(location.current).to eq([0, 1])
+
+        location.move_east
+        expect(location.current).to eq([1, 1])
+
+        location.move_south
+        expect(location.current).to eq([1, 0])
+
+        location.move_west
+        expect(location.current).to eq([0, 0])
+      end
+    end
+  end
+end
