@@ -9,19 +9,19 @@ class Location
     [@x, @y]
   end
 
-  def move_north
-    @y += 1
+  def move_north(num_moves = 1)
+    @y += num_moves
   end
 
-  def move_east
-    @x += 1
+  def move_east(num_moves = 1)
+    @x += num_moves
   end
 
-  def move_south
-    @y -= 1
+  def move_south(num_moves = 1)
+    @y -= num_moves
   end
 
-  def move_west
-    @x -= 1
+  def move_west(num_moves = 1)
+    @x -= num_moves
   end
 end
