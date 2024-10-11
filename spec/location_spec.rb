@@ -23,6 +23,20 @@ describe Location do
         location.move_west
         expect(location.current).to eq([0, 0])
       end
+
+      it "returns the correct location after multiple moves" do
+        location.move_north(7)
+        expect(location.current).to eq([0, 7])
+
+        location.move_east(3)
+        expect(location.current).to eq([3, 7])
+
+        location.move_south(2)
+        expect(location.current).to eq([3, 5])
+
+        location.move_west(4)
+        expect(location.current).to eq([-1, 5])
+      end
     end
   end
 end
