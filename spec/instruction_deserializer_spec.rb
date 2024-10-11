@@ -9,7 +9,7 @@ describe InstructionDeserializer do
         results << instruction
       end
 
-      expect(results).to eq(%i(forward forward left forward right forward forward))
+      expect(results).to eq(%i(move move turn_left move turn_right move move))
     end
   end
 end
