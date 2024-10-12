@@ -20,7 +20,7 @@ class Orientation
     @current_index = (@current_index + turns) % DIRECTIONS.length
   end
 
-  def current_direction_initial
+  def initial
     DIRECTION_INITIAL_MAP[current]
   end
 end

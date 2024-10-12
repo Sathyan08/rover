@@ -14,7 +14,7 @@ class RoverTextFileInterpreter
         boundry = create_boundry(line.strip)
       else
         rover_string, instructions = line.strip.split(')').map(&:strip)
-        rover_string.gsub!('(', '')
+
         rover = create_rover(rover_string)
         rover_simulation = RoverSimulation.new(rover, boundry, instructions)
 
@@ -27,11 +27,12 @@ class RoverTextFileInterpreter
   private
 
   def create_boundry(line)
-    x, y = line.split(' ').map(&:to_i)
+    x, y = line.strip.split(' ').map(&:to_i)
     Boundry.new(x, y)
   end
 
   def create_rover(rover_string)
+    rover_string.gsub!('(', '')
     rover_chars = rover_string.split(', ')
     rover_coords = rover_chars[0..1].map(&:to_i)
 

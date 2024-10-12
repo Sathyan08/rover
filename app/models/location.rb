@@ -5,11 +5,9 @@ class Location
     @x, @y = x, y
   end
 
-  def current
+  def to_a
     [@x, @y]
   end
-
-  alias_method :to_a, :current
 
   def move_north(num_moves = 1)
     @y += num_moves

@@ -12,8 +12,8 @@ describe Rover do
     it "processes the instructions" do
       instructions.each { |instruction| rover.process_instruction(instruction) }
 
-      expect(rover.location_current).to eq([2, 3])
-      expect(rover.orientation_current).to eq('west')
+      expect(rover.current_location).to eq([2, 3])
+      expect(rover.current_orientation).to eq('west')
     end
   end
 

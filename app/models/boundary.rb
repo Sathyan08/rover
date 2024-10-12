@@ -2,20 +2,17 @@ class Boundry
   attr_reader :x_range, :y_range
 
   def initialize(x_range, y_range)
-    if x_range.is_a?(Range)
-      @x_range = x_range
-    elsif x_range.is_a?(Integer)
-      @x_range = (0..x_range)
-    end
-
-    if y_range.is_a?(Range)
-      @y_range = y_range
-    elsif y_range.is_a?(Integer)
-      @y_range = (0..y_range)
-    end
+    @x_range = set_range(x_range)
+    @y_range = set_range(y_range)
   end
 
   def within_boundries?(location)
     x_range.include?(location.x) && y_range.include?(location.y)
+  end
+
+  private
+
+  def set_range(range)
+    range.is_a?(Range) ? range : (0..range)
   end
 end

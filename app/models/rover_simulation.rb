@@ -13,6 +13,7 @@
     def process_instructions
       instruction_deserializer.each do |instruction|
         break if rover.lost?
+
         rover.process_instruction(instruction)
         rover.lost = true unless boundry.within_boundries?(rover.location)
       end

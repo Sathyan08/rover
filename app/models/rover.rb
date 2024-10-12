@@ -4,21 +4,18 @@ class Rover
   include ActiveModel::Model
   VALID_INSTRUCTIONS = %i[move turn_left turn_right].freeze
 
-  attr_reader :location, :orientation
+  attr_reader :location, :orientation, :last_known_location
   attr_accessor :lost
 
   delegate :move, to: :location
   delegate :turn_left, :turn_right, to: :orientation
 
-  delegate :current, to: :location, prefix: true
-  delegate :current, to: :previous_location, prefix: true
+  delegate :to_a, to: :location, prefix: true
   delegate :current, to: :orientation, prefix: true
+  delegate :initial, to: :orientation, prefix: true
 
-  delegate :current_direction_initial, to: :orientation
-
-  alias_method :current_location, :location_current
+  alias_method :current_location, :location_to_a
   alias_method :current_orientation, :orientation_current
-
   alias_method :lost?, :lost
 
   def initialize(location, orientation)
@@ -43,10 +40,10 @@ class Rover
   end
 
   def status
-    if lost?
-      "(#{@last_known_location.to_a.join(', ')}, #{current_direction_initial}) LOST"
-    else
-      "(#{current_location.to_a.join(', ')}, #{current_direction_initial})"
-    end
+    location_status = lost? ? last_known_location : location
+    status_string = "(#{location_status.to_a.join(', ')}, #{orientation_initial})"
+    status_string += " LOST" if lost?
+
+    status_string
   end
 end
