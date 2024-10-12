@@ -11,25 +11,28 @@ class Rover
   delegate :turn_left, :turn_right, to: :orientation
 
   delegate :current, to: :location, prefix: true
+  delegate :current, to: :previous_location, prefix: true
   delegate :current, to: :orientation, prefix: true
 
   delegate :current_direction_initial, to: :orientation
 
   alias_method :current_location, :location_current
   alias_method :current_orientation, :orientation_current
+
   alias_method :lost?, :lost
 
   def initialize(location, orientation)
     @location = location
+    @last_known_location = location.dup
+
     @orientation = orientation
     @lost = false
-    @previous_location = location
   end
 
   def move
     return if lost?
 
-    @previous_location = Location.new(*current_location)
+    @last_known_location = location.dup
     movement_instruction = "move_" + orientation_current.to_s
     location.send(movement_instruction)
   end
@@ -41,9 +44,9 @@ class Rover
 
   def status
     if lost?
-      "(#{@previous_location.current.join(', ')}, #{current_direction_initial}) LOST"
+      "(#{@last_known_location.to_a.join(', ')}, #{current_direction_initial}) LOST"
     else
-      "(#{current_location.join(', ')}, #{current_direction_initial})"
+      "(#{current_location.to_a.join(', ')}, #{current_direction_initial})"
     end
   end
 end

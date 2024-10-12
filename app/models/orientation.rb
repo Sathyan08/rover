@@ -1,7 +1,10 @@
 class Orientation
   DIRECTIONS = %w(north east south west)
+  INITIAL_DIRECTION_MAP = { 'N' => 'north', 'E' => 'east', 'S' => 'south', 'W' => 'west' }
+  DIRECTION_INITIAL_MAP = INITIAL_DIRECTION_MAP.invert
 
   def initialize(starting_direction)
+    starting_direction = INITIAL_DIRECTION_MAP.fetch(starting_direction, starting_direction)
     @current_index = DIRECTIONS.index(starting_direction)
   end
 
@@ -18,6 +21,6 @@ class Orientation
   end
 
   def current_direction_initial
-    DIRECTIONS[@current_index][0].upcase
+    DIRECTION_INITIAL_MAP[current]
   end
 end

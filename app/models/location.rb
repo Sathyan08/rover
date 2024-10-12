@@ -9,6 +9,8 @@ class Location
     [@x, @y]
   end
 
+  alias_method :to_a, :current
+
   def move_north(num_moves = 1)
     @y += num_moves
   end
@@ -23,5 +25,9 @@ class Location
 
   def move_west(num_moves = 1)
     @x -= num_moves
+  end
+
+  def dup
+    self.class.new(x, y)
   end
 end
