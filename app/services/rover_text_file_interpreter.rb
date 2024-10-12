@@ -1,6 +1,6 @@
 class RoverTextFileInterpreter
   INSTRUCTIONS_DIRECTORY = 'app/data'
-  INSTRUCTION_TEXT_FILES = Dir.entries(INSTRUCTIONS_DIRECTORY).select { |file| file.include?('rover_instructions') }
+  INSTRUCTION_TEXT_FILES = Dir.entries(INSTRUCTIONS_DIRECTORY).select { |file| file.include?('rover_instructions') }.sort
 
   attr_reader :file_path
 
