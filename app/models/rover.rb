@@ -23,9 +23,13 @@ class Rover
     @location = location
     @orientation = orientation
     @lost = false
+    @previous_location = location
   end
 
   def move
+    return if lost?
+
+    @previous_location = Location.new(*current_location)
     movement_instruction = "move_" + orientation_current.to_s
     location.send(movement_instruction)
   end
@@ -36,8 +40,10 @@ class Rover
   end
 
   def status
-    status_string = "(#{current_location.join(', ')}, #{current_direction_initial})"
-    status_string += " LOST" if lost?
-    status_string
+    if lost?
+      "(#{@previous_location.current.join(', ')}, #{current_direction_initial}) LOST"
+    else
+      "(#{current_location.join(', ')}, #{current_direction_initial})"
+    end
   end
 end
