@@ -53,4 +53,28 @@ describe Rover do
       expect(rover.orientation_current).to eq('west')
     end
   end
+
+  describe "status" do
+    context "when the rover is not lost" do
+      let(:location) { Location.new(1, 2) }
+      let(:orientation) { Orientation.new('north') }
+
+      it "returns the current location and orientation" do
+        expect(rover.status).to eq("(1, 2, N)")
+      end
+    end
+
+    context "when the rover is lost" do
+      let(:location) { Location.new(1, 2) }
+      let(:orientation) { Orientation.new('north') }
+
+      before do
+        rover.lost = true
+      end
+
+      it "returns the current location and orientation with 'LOST'" do
+        expect(rover.status).to eq("(1, 2, N) LOST")
+      end
+    end
+  end
 end

@@ -16,4 +16,8 @@ class Orientation
   def turn_right(turns = 1)
     @current_index = (@current_index + turns) % DIRECTIONS.length
   end
+
+  def current_direction_initial
+    DIRECTIONS[@current_index][0].upcase
+  end
 end
