@@ -4,5 +4,7 @@ Bundler.require
 
 require_all 'app'
 
-instructions = RoverTextFileInterpreter::INSTRUCTION_TEXT_FILE_PATHS[ARGV[0].to_i]
-RoverTextFileInterpreter.new(instructions).process { |results| puts results }
+instruction_filename = RoverTextFileInterpreter::INSTRUCTION_TEXT_FILES[ARGV[0].to_i]
+file = File.join(RoverTextFileInterpreter::INSTRUCTIONS_DIRECTORY, instruction_filename)
+
+RoverTextFileInterpreter.new(file).process { |results| puts results }

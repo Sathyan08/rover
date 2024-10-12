@@ -1,5 +1,6 @@
 class RoverTextFileInterpreter
-  INSTRUCTION_TEXT_FILE_PATHS = ['app/data/rover_instructions1.txt', 'app/data/rover_instructions2.txt']
+  INSTRUCTIONS_DIRECTORY = 'app/data'
+  INSTRUCTION_TEXT_FILES = Dir.entries(INSTRUCTIONS_DIRECTORY).select { |file| file.include?('rover_instructions') }
 
   attr_reader :file_path
 
